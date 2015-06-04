@@ -1,0 +1,86 @@
+<div class="form-area col-sm-4 col-sm-offset-4">
+  <center><h2>Sign up</h2></center>
+  <% resource.build_address if resource.address.nil? %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%#= devise_error_messages! %>
+    <%= render "shared/error_message", object: f.object %>
+
+    <div class="form-group">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="input-group">
+      <%= f.label :birthday %><br />
+      <%= f.date_select :dob, {:start_year => Date.current.year, :end_year => 1920,
+      prompt: {day: "Day", month: "Month", year: "Year"}, order: [:day, :month, :year]}, {class: "form-control selectwidthauto"} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :Gender %><br />
+      <%= f.select :gender, [ ['Female',:female], ['Male', :male] ], {}, {class: "form-control selectwidthauto"} %>
+    </div>    
+    
+    <%= f.fields_for :address do |builder| %>
+      <div class="form-group">
+        <%= builder.label :phone %><br />
+        <%= builder.text_field :phone, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <%= builder.label :no %><br />
+          <%= builder.text_field :house_no, class: "form-control" %>
+        </div>
+        <div class="input-group">
+          <%= builder.label :st %><br />
+          <%= builder.text_field :street_no, class: "form-control" %>
+        </div>
+      </div>      
+
+      <div class="form-group">
+        <%= builder.label :village %><br />
+        <%= builder.text_field :village, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= builder.label :commune, "Commune/Sangkat" %><br />
+        <%= builder.text_field :commune, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= builder.label :district, "District/Khan" %><br />
+        <%= builder.text_field :district, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= builder.label :province, "Province/City" %><br />        
+        <%= builder.select(:province_id,options_from_collection_for_select(Province.all, "id", "name",1),{},{class: "form-control selectwidthauto"}) %>
+      </div>
+    <%end%>
+
+    <div class="actions">
+      <%= f.submit "Sign up", class: "form-control btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

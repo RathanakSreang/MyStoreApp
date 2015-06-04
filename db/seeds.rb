@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+["Phnom Penh","Pursat","Banteay Meanchey",
+  "Battambang","Kampong Cham","Kampong Speu",
+  "Kampong Thom","Kampot","Kandal","Koh Kong",
+  "Kep","Kratié","Mondulkiri","Oddar Meanchey",
+  "Pailin","Preah Sihanouk","Preah Vihear",
+  "Prey Veng","Ratanakiri","Siem Reap",
+  "Stung Treng","Svay Rieng","Takéo",
+  "Tbong Khmum","Kampong Chhnang"].each do |name|
+    Province.create name:name
+  end
