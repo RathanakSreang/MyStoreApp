@@ -1,43 +1,33 @@
-<nav class="navbar navbar-default navbar-fixed-top" data-spy="affix">
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#user-bar"> 
-        <i class="glyphicon glyphicon-user"></i>
-      </button>      
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#search-bar">
-        <i class="glyphicon glyphicon-search"></i>      
-      </button>
-      <button type="button" class="pull-left navbar-toggle collapsed" data-toggle="collapse" data-target="#my-header-form">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
       </button>
-
-      <a class="navbar-brand" href="#">MyStore</a>
+      <a class="navbar-brand" href="#">Khmer Hang</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="my-header-form">
-      <ul class="nav navbar-nav">
-          <li>
-            <%= link_to "All Store", "#" %>
-          </li>
-          <li>
-      </ul>
-    </div><!-- /.navbar-collapse --> 
-<!-- 
-    <div class="collapse navbar-collapse" id="search-bar">
-      <ul class="nav navbar-nav">
-      </ul>
-    </div>
-    <div class="collapse navbar-collapse" id="user-bar">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-          Sign In
+        <li><p class="navbar-text">Already have an account?</p></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+      <ul id="login-dp" class="dropdown-menu">
+        <li>
+          <div class="row">
+            <div class="col-md-12">
+              <%= render "devise/sessions/sign_in" %>
+            </div>
+          </div>
+        </li>
       </ul>
-    </div>
-  </div>--><!-- /.container-fluid --> 
-
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
