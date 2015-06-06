@@ -1,0 +1,39 @@
+<legend><a href="#"><i class="fa fa-sign-in"></i></a> Sign in via</legend>
+<div class="social-buttons">
+<center>
+  <%= link_to raw('<i class="fa fa-facebook"></i> Facebook'), user_omniauth_authorize_path(:facebook), class: "btn btn-fb" %>
+  <%= link_to raw('<i class="fa fa-twitter"></i> Twitter'), user_omniauth_authorize_path(:twitter), class: "btn btn-tw" %>
+  <%= link_to raw('<i class="fa fa-google "></i> Google'), user_omniauth_authorize_path(:google_oauth2), class: "btn btn-google" %>
+</center>
+</div>
+<center class="or">OR</center>
+ <%= form_for(User.new, url: user_session_path, class:"form", id: "login-nav") do |f| %>
+    <div class="form-group">
+       <%= f.label :email, "Email address",class: "sr-only" %>
+       <%= f.email_field :email, autofocus: true, class: "form-control",placeholder:"Email address" %>
+    </div>
+
+    <div class="form-group">
+       <%= f.label :password, class: "sr-only" %>
+       <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder:"Password" %>
+      <div class="help-block text-right">
+        <%= link_to "Forget the password ?", new_user_password_path %>
+      </div>
+    </div>
+    
+    <div class="checkbox">
+      <%= f.label :remember_me  do%>
+        <%= f.check_box :remember_me %>Remember me
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Log in", class:"btn btn-primary btn-block" %>
+    </div>
+ <% end %>
+  <div class="help-block text-center">
+    <%= link_to "Didn't receive confirmation instructions?",new_user_confirmation_path %>
+  </div>
+<div class="bottom text-center">
+  New here ? <%= link_to raw('<b>Sign Up</b>'), new_user_registration_path %>
+</div>

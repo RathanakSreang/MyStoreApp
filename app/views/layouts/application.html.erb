@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MyStoreApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title><%= full_title yield(:title) %></title>
+  <%= render "layouts/shim" %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>  
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-<%= yield %>
-
+  <%= render "layouts/header" %>
+  <div id="application" class="container">
+    <%= render "layouts/flash_message" %>
+    <%= yield %>    
+  </div>
+  <%= render "layouts/footer" %>
 </body>
 </html>
