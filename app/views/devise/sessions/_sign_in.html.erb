@@ -6,7 +6,7 @@
   <%= link_to raw('<i class="fa fa-google "></i> Google'), user_omniauth_authorize_path(:google_oauth2), class: "btn btn-google" %>
 </center>
 </div>
-<center>Or</center>
+<center class="or">OR</center>
  <%= form_for(User.new, url: user_session_path, class:"form", id: "login-nav") do |f| %>
     <div class="form-group">
        <%= f.label :email, "Email address",class: "sr-only" %>
