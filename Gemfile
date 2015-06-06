@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "devise"
+gem "client_side_validations", github: "DavyJonesLocker/client_side_validations", branch: "4-2-stable"
 
 gem "will_paginate", "3.0.7"
 gem "bootstrap-sass", "3.2.0.0"
