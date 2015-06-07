@@ -28,13 +28,17 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
-      if auth.provider == "twitter"        
+
+      if auth.provider == "twitter"
+        user.url = auth.info.urls.Twitter
         user.email = "#{auth.uid}.twitter@twitter.com"#auth.info.email        
       elsif auth.provider == "facebook"        
         user.email = auth.info.email
+        user.url = auth.info.urls.Facebook
         user.gender = self.get_gender auth.extra.raw_info.gender
       else        
         user.email = auth.info.email
+        user.url = auth.extra.raw_info.profile
         user.gender = self.get_gender auth.extra.raw_info.gender
         user.dob = auth.extra.raw_info.birthday
       end
@@ -62,13 +66,13 @@ class User < ActiveRecord::Base
     super && provider.blank?
   end
 
-  def update_with_password params, *options
-    if encrypted_password.blank?
-      update_attributes params, *option
-    else
-      super
-    end
-  end
+  # def update_with_password params, *options
+  #   if encrypted_password.blank?
+  #     update_attributes params, *option
+  #   else
+  #     super
+  #   end
+  # end
 
   def provider?
     provider.blank?

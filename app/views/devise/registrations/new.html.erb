@@ -3,8 +3,8 @@
     <legend><a href="#"><i class="glyphicon glyphicon-globe"></i></a> Sign up here with!</legend>
     <div class="social-buttons">
       <center>
-        <%= link_to raw('<i class="fa fa-facebook"></i> Facebook'), user_omniauth_authorize_path(:facebook), class: "btn btn-fb" %>
-        <%= link_to raw('<i class="fa fa-twitter"></i> Twitter'), user_omniauth_authorize_path(:twitter), class: "btn btn-tw" %>
+        <%= link_to raw('<i class="fa fa-facebook"></i> Facebook'), user_omniauth_authorize_path(:facebook), class: "btn btn-facebook" %>
+        <%= link_to raw('<i class="fa fa-twitter"></i> Twitter'), user_omniauth_authorize_path(:twitter), class: "btn btn-twitter" %>
         <%= link_to raw('<i class="fa fa-google "></i> Google'), user_omniauth_authorize_path(:google_oauth2), class: "btn btn-google" %>
       </center>
     </div>    
@@ -42,7 +42,7 @@
       
       <div class="form-group">
           <%= f.label :gender, class: "radio-inline", value: :male do %>
-            <%= f.radio_button :gender, :male, checked: true %>Male
+            <%= f.radio_button :gender, :male %>Male
           <% end%>
           <%= f.label :gender, class: "radio-inline", value: :female do %>
             <%= f.radio_button :gender, :female %>Female
@@ -78,7 +78,7 @@
         </div>
 
         <div class="form-group">
-          <%= builder.select(:province_id,options_from_collection_for_select(Province.all, "id", "name",1),{},{class: "form-control"}) %>
+          <%= builder.select(:province_id,options_from_collection_for_select(Province.all, "id", "name", (builder.object.province.nil? ? 1 : builder.object.province.id)),{},{class: "form-control"}) %>
         </div>
       <% end %>
 

@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-4">
+    <div class="well well-sm">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <img src="http://placehold.it/380x500" alt="" class="img-circle img-responsive" />
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <tr class="info">
+              <td>
+                Name: <%= @user.name %>
+              </td>
+            </tr>
+            <tr class="info">
+              <td>
+                <% if @user.provider.blank? %>
+                  Email: <%= @user.email %>
+                <% elsif @user.provider != "google_oauth2" %>
+                  <%= link_to "#{@user.url}", class: "btn btn-#{@user.provider}" do %>
+                    <i class="fa fa-<%= @user.provider %> "></i> <%= @user.provider.capitalize %>
+                  <% end %>
+                <% else %>
+                  <%= link_to "#{@user.url}", class: "btn btn-google" do %>
+                    <i class="fa fa-google "></i> Google
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+            <tr class="info">
+              <td>
+                Sex: <%= @user.gender %>
+              </td>
+            </tr>
+            <tr class="info">
+              <td>
+                DOB: <%= @user.dob %>
+              </td>
+            </tr>
+            
+            <tr class="info">
+              <td>
+                Phone: <%= @user.address.phone if @user.address %>
+              </td>
+            </tr>
+            <tr class="info">
+              <td>
+                Address:
+                <ul>
+                  <li>
+                    House No: <%= @user.address.house_no if @user.address %>,
+                     Street No:<%= @user.address.street_no if @user.address %>
+                  </li>
+                  <li>
+                    Village:<%= @user.address.village if @user.address %>
+                  </li>
+                  <li>
+                    Commune: <%= @user.address.commune if @user.address %>
+                  </li>
+                  <li>
+                    District: <%= @user.address.district if @user.address %>
+                  </li>
+                  <li>
+                    Province: <%= @user.address.province.name if @user.address %>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <% if current_user == @user %>
+        <%= link_to raw('<i class="fa fa-pencil-square-o"></i> Edit Profile'), edit_user_registration_path, class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+</div>

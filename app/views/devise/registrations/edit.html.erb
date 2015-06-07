@@ -1,40 +1,103 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 well well-sm">
+    <legend></i></a> Edit <%= resource.name %> profile</legend>
+    <% resource.build_address if resource.address.nil? %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%#= devise_error_messages! %>
+      <%= render "shared/error_message", object: f.object %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "*Full Name", required: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+      <% unless f.object.provider.present? %>
+        <div class="form-group">
+          <%= f.email_field :email, class: "form-control", placeholder: "*Your Email", required: true %>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+        <div class="form-group">
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <i>(leave blank if you don't want to change it)</i>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "*New Password" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "*Confirm Password" %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :birthday, "Birth Day" %>
+        <div class="form-inline">
+          <%= f.date_select :dob, {start_year: 5.year.ago.year, end_year: 1920,
+            order: [:day, :month, :year], validate: false,
+            prompt: { day: "Day", month: "Month", year: "Year" }},
+            {class: "form-control selectwidthauto"} %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+          <%= f.label :gender, class: "radio-inline", value: :male do %>
+            <%= f.radio_button :gender, :male %>Male
+          <% end%>
+          <%= f.label :gender, class: "radio-inline", value: :female do %>
+            <%= f.radio_button :gender, :female %>Female
+          <% end%>
+      </div>
+
+      <%= f.fields_for :address do |builder| %>
+        <div class="form-group">
+          <%= builder.text_field :phone, class: "form-control", placeholder: "Phone Number" %>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <%= builder.text_field :house_no, class: "form-control", placeholder: "House Number" %>
+            </div>
+            <div class="col-sm-6">
+              <%= builder.text_field :street_no, class: "form-control", placeholder: "Street Number" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= builder.text_field :village, class: "form-control", placeholder: "Village/ Group" %>
+        </div>
+
+        <div class="form-group">
+          <%= builder.text_field :commune, class: "form-control", placeholder: "Commune/Sangkat" %>
+        </div>
+
+        <div class="form-group">
+          <%= builder.text_field :district, class: "form-control", placeholder: "District/Khan" %>
+        </div>
+
+        <div class="form-group">
+          <%= builder.select(:province_id,options_from_collection_for_select(Province.all, "id", "name", (builder.object.province.nil? ? 1 : builder.object.province.id)),{},{class: "form-control"}) %>
+        </div>
+      <% end %>
+      
+      <% if f.object.encrypted_password.present? %>
+        <div class="form-group">
+          <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "*Current Password" %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.submit "Update", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+
+    <hr/>
+    <h3>Cancel my account</h3>
+
+    <%= button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger pull-right" %>
+    <%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), :back, class: "btn btn-primary" %>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <% if f.object.encrypted_password.present? %>
-    <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off" %>
-    </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

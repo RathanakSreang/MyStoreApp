@@ -6,27 +6,19 @@
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>        
       </button>
-      <a class="navbar-brand" href="#">Khmer Hang</a>
+      <%= link_to "Khmer Hang", root_path, class: "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text">Already have an account?</p></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-      <ul id="login-dp" class="dropdown-menu">
-        <li>
-          <div class="row">
-            <div class="col-md-12">
-              <%= render "devise/sessions/sign_in" %>
-            </div>
-          </div>
-        </li>
-      </ul>
-        </li>
+        <% if user_signed_in? %>
+          <%= render "layouts/header_user_signined" %>
+        <% else %>
+          <%= render "layouts/header_user_signin" %>
+        <% end %>      
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
