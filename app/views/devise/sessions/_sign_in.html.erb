@@ -1,8 +1,8 @@
 <legend><a href="#"><i class="fa fa-sign-in"></i></a> Sign in via</legend>
 <div class="social-buttons">
 <center>
-  <%= link_to raw('<i class="fa fa-facebook"></i> Facebook'), user_omniauth_authorize_path(:facebook), class: "btn btn-fb" %>
-  <%= link_to raw('<i class="fa fa-twitter"></i> Twitter'), user_omniauth_authorize_path(:twitter), class: "btn btn-tw" %>
+  <%= link_to raw('<i class="fa fa-facebook"></i> Facebook'), user_omniauth_authorize_path(:facebook), class: "btn btn-facebook" %>
+  <%= link_to raw('<i class="fa fa-twitter"></i> Twitter'), user_omniauth_authorize_path(:twitter), class: "btn btn-twitter" %>
   <%= link_to raw('<i class="fa fa-google "></i> Google'), user_omniauth_authorize_path(:google_oauth2), class: "btn btn-google" %>
 </center>
 </div>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.submit "Log in", class:"btn btn-primary btn-block" %>
+      <%= f.submit "Sign in", class:"btn btn-primary btn-block" %>
     </div>
  <% end %>
   <div class="help-block text-center">
