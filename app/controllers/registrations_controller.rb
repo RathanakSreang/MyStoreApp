@@ -18,9 +18,16 @@ class RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    #super
+    if update_resource current_user, params
+      flash[:success] = "Successful Updated"
+      redirect_to current_user
+    else
+      flash.now[:danger] = "Updated Fail"
+      render "edit"
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -68,12 +75,13 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def user_without_password_params
-    user_with_password_params.except :current_password   
+    user_with_password_params.except :current_password
   end
 
   def user_with_password_params    
     params.require(:user).permit :name, :dob, :gender, :email, :current_password,
      :password, :password_confirmation, address_attributes: [:phone, :house_no,
-     :street_no, :village, :commune, :district, :province_id]
+     :street_no, :village, :commune, :district, :province_id],
+     image_attributes: [:name]
   end
 end

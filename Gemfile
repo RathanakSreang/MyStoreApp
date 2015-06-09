@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+#gem "rmagick", "~> 2.15.2"
+#gem "jquery-fileupload-rails"
+gem "carrierwave"
 gem "devise"
 gem "omniauth-facebook"
 gem "omniauth-twitter"

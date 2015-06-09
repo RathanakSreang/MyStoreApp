@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,}+\z/i
   #validates_format_of :email, with: VALID_EMAIL_REGEX  
 
-  belongs_to :address
+  belongs_to :address  
+  belongs_to :image
+  accepts_nested_attributes_for  :image
   accepts_nested_attributes_for  :address
 
   def self.from_omniath auth
