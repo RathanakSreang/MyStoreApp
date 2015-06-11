@@ -44,3 +44,26 @@ li {
   color: red;
   font-weight: normal;
 }
+
+#user-header{
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  .user-name{
+    padding-left: 5px;
+  }
+}
+
+.small_user_profile{
+  width: 35px;
+  height: 35px;
+  border: 1px solid orange;
+}
+
+.user_profile{
+  width: 200px;
+  height: 200px;
+}

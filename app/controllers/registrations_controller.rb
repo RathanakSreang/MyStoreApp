@@ -79,9 +79,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def user_with_password_params    
-    params.require(:user).permit :name, :dob, :gender, :email, :current_password,
-     :password, :password_confirmation, address_attributes: [:phone, :house_no,
-     :street_no, :village, :commune, :district, :province_id],
-     image_attributes: [:name]
+    params.require(:user).permit :id, :name, :dob, :gender, :email, :current_password,
+     :password, :password_confirmation, :avatar, :avatar_cache,
+      address_attributes: [:id, :phone, :house_no, :street_no, :village,
+      :commune, :district, :province_id]
   end
 end
