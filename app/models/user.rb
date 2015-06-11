@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
   
   validates :email, presence: true, length: {maximum:50}, if: :provider?
   validates_presence_of :name, :dob, :gender, :email, if: :provider?
-  validates_format_of :name, with: /\A[-\w\._@]+\z/i, allow_blank: true, 
-                      message: "should only contain letters, numbers, or .-_@",
-                      if: :provider?
+  #validates_format_of :name, with: /\A[-\w\._@]+\z/i, allow_blank: true, 
+   #                   message: "should only contain letters, numbers, or .-_@",
+   #                   if: :provider?
   validates_length_of :password, minimum: 8, allow_blank: true, if: :provider?
   validates_confirmation_of :password,
                             message: "the password confirmation belove did not match",
@@ -20,9 +20,10 @@ class User < ActiveRecord::Base
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,}+\z/i
   #validates_format_of :email, with: VALID_EMAIL_REGEX  
 
-  belongs_to :address  
-  belongs_to :image
-  accepts_nested_attributes_for  :image
+  mount_uploader :avatar, AvatarUploader
+
+  belongs_to :address
+
   accepts_nested_attributes_for  :address
 
   def self.from_omniath auth
@@ -45,7 +46,7 @@ class User < ActiveRecord::Base
         user.dob = auth.extra.raw_info.birthday
       end
       user.skip_confirmation!
-      user.save 
+      user.save
     end
   end
 

@@ -1,20 +1,19 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-4 well well-sm">
     <legend></i></a> Edit <%= resource.name %> profile</legend>
-    <% resource.build_address if resource.address.nil? %>
-    <% resource.build_image if resource.image.nil? %>
+    <% resource.build_address if resource.address.nil? %>    
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%#= devise_error_messages! %>
       <%= render "shared/error_message", object: f.object %>
+            
+      <div class="col-md-8 col-md-offset-2">
+        <%= image_tag f.object.avatar, class:"img-circle img-responsive user_profile", id: "uploadPreview"  %>
+      </div>        
+      <div class="form-group">          
+        <%= f.file_field :avatar, class: "form-control", id: "uploadImage", onchange:"PreviewImage();"%>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
       
-      <%= f.fields_for :image do |builder| %>
-        <div class="col-md-9 col-md-offset-1">
-          <%= user_image_profile builder.object %>
-        </div>        
-        <div class="form-group">
-          <%= builder.file_field :name, class: "form-control" %>
-        </div>
-      <% end %>
       <div class="form-group">
         <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "*Full Name", required: true %>
       </div>
@@ -107,6 +106,6 @@
     <h3>Cancel my account</h3>
 
     <%= button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger pull-right" %>
-    <%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), :back, class: "btn btn-primary" %>
+    <%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), current_user, class: "btn btn-primary" %>
   </div>
 </div>
