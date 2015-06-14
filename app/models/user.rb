@@ -8,24 +8,19 @@ class User < ActiveRecord::Base
          :confirmable, :omniauthable
   
   validates :email, presence: true, length: {maximum:50}, if: :provider?
-  validates_presence_of :name, :dob, :gender, :email, if: :provider?
-  #validates_format_of :name, with: /\A[-\w\._@]+\z/i, allow_blank: true, 
-   #                   message: "should only contain letters, numbers, or .-_@",
-   #                   if: :provider?
+  validates_presence_of :name, :dob, :gender, :email, if: :provider?  
   validates_length_of :password, minimum: 8, allow_blank: true, if: :provider?
   validates_confirmation_of :password,
                             message: "the password confirmation belove did not match",
                             if: :provider?
   validates_uniqueness_of :email, if: :provider?
-  #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,}+\z/i
-  #validates_format_of :email, with: VALID_EMAIL_REGEX  
 
   mount_uploader :avatar, AvatarUploader
 
   belongs_to :address, dependent: :destroy
   has_one :user_store, dependent: :destroy
   has_one :store, through: :user_store
-  accepts_nested_attributes_for  :address
+  accepts_nested_attributes_for  :address, allow_destroy: true
 
   def self.from_omniath auth
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
@@ -51,17 +46,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def self.new_with_session params, session
-  #   if session["devise.user_attributes"]
-  #     new(session["devise.user_attributes"], without_protection: true) do |user|
-  #       user.attributes = params
-  #       user.valid?
-  #     end
-  #   else
-  #     super
-  #   end
-  # end
-
   def password_required?
     super && provider.blank?
   end
@@ -69,14 +53,6 @@ class User < ActiveRecord::Base
   def email_required?
     super && provider.blank?
   end
-
-  # def update_with_password params, *options
-  #   if encrypted_password.blank?
-  #     update_attributes params, *option
-  #   else
-  #     super
-  #   end
-  # end
 
   def provider?
     provider.blank?

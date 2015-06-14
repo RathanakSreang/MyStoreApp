@@ -4,9 +4,9 @@ class Store < ActiveRecord::Base
   belongs_to :address, dependent: :destroy
   has_many :users, through: :user_stores  
 
-  accepts_nested_attributes_for  :address
-  accepts_nested_attributes_for  :sub_domains
-  accepts_nested_attributes_for  :user_stores
+  accepts_nested_attributes_for  :address, allow_destroy: true
+  accepts_nested_attributes_for  :sub_domains, allow_destroy: true
+  accepts_nested_attributes_for  :user_stores, allow_destroy: true
 
   validates :name, presence: true
 end
