@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   protected
+  #put in before_filter
+  def load_store
+    if request.subdomain.present? && request.subdomain != "www"
+      sub_domain = SubDomain.find_by_name request.subdomain
+      @store = sub_domain.store
+    else
+      redirect_to root_path
+    end
+  end
 
   def configure_permitted_parameters
     #devise_parameter_sanitizer.for(:sign_up) << :name, :dob, :gender

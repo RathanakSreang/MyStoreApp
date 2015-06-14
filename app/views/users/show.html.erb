@@ -74,7 +74,11 @@
       </div>
       <% if current_user == @user %>
         <%= link_to raw('<i class="fa fa-pencil-square-o"></i> Edit Profile'), edit_user_registration_path, class: "btn btn-info" %>
-        <%= link_to raw('<i class="fa fa-pencil-square-o"></i> My Tob'), edit_user_registration_path, class: "btn btn-info pull-right" %>
+        <% if @user.store %>
+          <%= link_to raw('<i class="fa fa-pencil-square-o"></i> My Tob'), admin_url(subdomain: @user.store.sub_domains.first.name), class: "btn btn-info pull-right" %>
+        <% else %>
+          <%= link_to raw('<i class="fa fa-pencil-square-o"></i> Create Tob'), new_store_path, class: "btn btn-info pull-right" %>
+        <% end %>
       <% end %>
     </div>
   </div>

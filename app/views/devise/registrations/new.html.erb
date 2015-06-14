@@ -49,39 +49,8 @@
           <% end%>
       </div>
 
-      <%= f.fields_for :address do |builder| %>
-        <div class="form-group">
-          <%= builder.text_field :phone, class: "form-control", placeholder: "Phone Number" %>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-6">
-              <%= builder.text_field :house_no, class: "form-control", placeholder: "House Number" %>
-            </div>
-            <div class="col-sm-6">
-              <%= builder.text_field :street_no, class: "form-control", placeholder: "Street Number" %>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= builder.text_field :village, class: "form-control", placeholder: "Village/ Group" %>
-        </div>
-
-        <div class="form-group">
-          <%= builder.text_field :commune, class: "form-control", placeholder: "Commune/Sangkat" %>
-        </div>
-
-        <div class="form-group">
-          <%= builder.text_field :district, class: "form-control", placeholder: "District/Khan" %>
-        </div>
-
-        <div class="form-group">
-          <%= builder.select(:province_id,options_from_collection_for_select(Province.all, "id", "name", (builder.object.province.nil? ? 1 : builder.object.province.id)),{},{class: "form-control"}) %>
-        </div>
-      <% end %>
-
+      <%= render "addresses/form", f: f %>
+      
       <div class="form-group">
         <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
       </div>

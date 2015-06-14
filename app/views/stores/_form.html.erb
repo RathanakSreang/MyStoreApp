@@ -1,0 +1,15 @@
+
+<%= render "shared/error_message", object: f.object %>
+<div class="form-group">
+  <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "*Store Name", required: true %>
+</div>
+<%= f.fields_for :user_stores do |builder| %>
+  <%= builder.hidden_field :user_id %>
+<% end %>
+<%= f.fields_for :sub_domains do |builder| %>
+  <div class="form-group">
+    <%= builder.text_field :name, class: "form-control", placeholder: "Sub Domain" %>
+  </div>
+<% end %>
+
+<%= render "addresses/form", f: f %>
