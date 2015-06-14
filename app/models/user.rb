@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  belongs_to :address, dependent: :destroy
+  belongs_to :address, dependent: :destroy, :validate => false
   has_one :user_store, dependent: :destroy
   has_one :store, through: :user_store
   accepts_nested_attributes_for  :address, allow_destroy: true

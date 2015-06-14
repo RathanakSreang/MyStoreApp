@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_store, only: [:edit, :update]
-  before_filter :load_store
+  before_filter :load_store, except: [:new, :create]
   def show    
   end
 
@@ -50,7 +50,11 @@ class StoresController < ApplicationController
     if @store.users.include? current_user
 
     else
-      redirect_to root_path
+      if current_user.store
+        redirect_to root_path
+      else
+        redirect_to new_store_url subdomain: false
+      end      
     end
   end
   private
