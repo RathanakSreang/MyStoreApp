@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608145315) do
+ActiveRecord::Schema.define(version: 20150612161416) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "house_no",    limit: 255
@@ -35,7 +35,37 @@ ActiveRecord::Schema.define(version: 20150608145315) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-  end  
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "address_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "stores", ["name"], name: "index_stores_on_name", using: :btree
+
+  create_table "sub_domains", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "store_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "sub_domains", ["name"], name: "index_sub_domains_on_name", unique: true, using: :btree
+  add_index "sub_domains", ["store_id"], name: "index_sub_domains_on_store_id", using: :btree
+
+  create_table "user_stores", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "store_id",   limit: 4
+    t.boolean  "admin",      limit: 1, default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "user_stores", ["store_id"], name: "index_user_stores_on_store_id", using: :btree
+  add_index "user_stores", ["user_id"], name: "index_user_stores_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -62,7 +92,7 @@ ActiveRecord::Schema.define(version: 20150608145315) do
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
     t.string   "url",                    limit: 255
-    t.string  "avatar",                  limit: 255
+    t.string   "avatar",                 limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

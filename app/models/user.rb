@@ -22,8 +22,9 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  belongs_to :address
-
+  belongs_to :address, dependent: :destroy
+  has_one :user_store, dependent: :destroy
+  has_one :store, through: :user_store
   accepts_nested_attributes_for  :address
 
   def self.from_omniath auth

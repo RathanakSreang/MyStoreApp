@@ -27,10 +27,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   process convert: "jpg"
-  process resize_to_limit: [200, 200]
+  process resize_to_fill: [200, 200, "Center"]
 
   version :small do
-    process resize_to_fit: [35, 35]
+    #process resize_to_fit: [35, 35]
+    process resize_to_fill: [35, 35, "Center"]
   end
 
   def extension_white_list
