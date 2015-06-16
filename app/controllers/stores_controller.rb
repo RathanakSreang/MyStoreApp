@@ -45,18 +45,7 @@ class StoresController < ApplicationController
   def destroy
     
   end
-
-  def admin
-    if @store.users.include? current_user
-
-    else
-      if current_user.store
-        redirect_to root_path
-      else
-        redirect_to new_store_url subdomain: false
-      end      
-    end
-  end
+  
   private
   def set_store
     @store = Store.find params[:id]

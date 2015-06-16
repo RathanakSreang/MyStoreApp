@@ -49,11 +49,10 @@ li {
   padding-top: 0px;
   padding-left: 0px;
   padding-right: 0px;
-  padding-bottom: 0px;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  padding-bottom: 0px;  
   .user-name{
     padding-left: 5px;
+    color: #fff;
   }
 }
 
@@ -66,4 +65,29 @@ li {
 .user_profile{
   width: 200px;
   height: 200px;
+}
+
+.user-bar {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  //text-align: right;  
+  text-transform: uppercase;
+  line-height: 25px;
+  font-size: 11px;
+  background-color: #324551;  
+}
+
+.reset{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.user-nav{
+ height: 25px;
+}
+
+.search{
+  background-color: #183546;
 }

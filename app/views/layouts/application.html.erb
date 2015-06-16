@@ -9,19 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <% if params[:controller]=="stores" && params[:action]=="admin" %>
-    <%= render "layouts/header" %>
+  <% if params[:controller]=="admin/stores" && params[:action]=="show" %>
+    <%= render "layouts/admin_header" %>
   <% else %>
-    <%#= render "layouts/header" %>
+    <%= render "layouts/header" %>
   <% end %>
   <div id="application" class="container">
     <%= render "layouts/flash_message" %>
     <%= yield %>
   </div>
 
-  <% if params[:controller]=="stores" && params[:action]=="admin" %>
-    <%= render "layouts/header" %>
-  <% else %>
+  <% unless params[:controller]=="admin/stores" && params[:action]=="show" %>
     <% if @store %>
       <%= render "layouts/footer_blog" %>
     <% else %>
