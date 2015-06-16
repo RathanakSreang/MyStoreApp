@@ -1,4 +1,9 @@
 Rails.application.routes.draw do  
+  namespace :admin do  
+    get "", to: "stores#show"
+    resources :products    
+  end
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks",
                                   passwords: "passwords",
                                   sessions: "sessions",
@@ -10,8 +15,7 @@ Rails.application.routes.draw do
     get "sign_up", to: "devise/registrations#new"
   end
   resources :users
-  resources :stores
-  get "admin"=>"stores#admin", as: :admin
+  resources :stores  
   get "help"=>"static_pages#help", as: :help
   get "about"=>"static_pages#about", as: :about
   get "contact"=>"static_pages#contact", as: :contact
