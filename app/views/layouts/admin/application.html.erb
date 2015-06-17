@@ -9,18 +9,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>  
-  <%= render "layouts/header" %>  
-  <div id="application" class="container">
-    <%= render "layouts/flash_message" %>
-    <%= yield %>
+  <div>
+    <%= render "layouts/admin/header" %>
+  </div>  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-10">
+        <%= render "layouts/flash_message" %>
+        <%= yield %>
+      </div>
+    </div>    
   </div>
-
-  <% unless controller?("admin/stores") && action?("show") %>
-    <% if @store %>
-      <%= render "layouts/footer_blog" %>
-    <% else %>
-      <%= render "layouts/footer" %>
-    <% end %>
-  <% end %>
 </body>
 </html>

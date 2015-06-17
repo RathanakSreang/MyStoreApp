@@ -2,7 +2,7 @@ class Admin::StoresController < ApplicationController
   before_action :authenticate_user!
   before_action :set_store, only: [:edit, :update]
   before_filter :load_store
-
+  layout "admin/application"  
   def show
     if @store.users.include? current_user
 
