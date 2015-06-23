@@ -1,4 +1,7 @@
 Rails.application.configure do
+  #config.action_dispatch.tld_length = 5
+  #config.domain = "192.168.1.101.xip.io"
+
   # Settings specified here will take precedence over those in config/application.rb.
   config.domain = "lvh.me"
   # In the development environment your application's code is reloaded on

@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_store_owner_admin
+    unless @store.users.include? current_user  
+      if current_user.store
+        redirect_to root_path
+      else
+        redirect_to new_store_url subdomain: false
+      end      
+    end
+  end
+
   def configure_permitted_parameters
     #devise_parameter_sanitizer.for(:sign_up) << :name, :dob, :gender
     # devise_parameter_sanitizer.for(:account_update) do |u|
