@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612161416) do
+ActiveRecord::Schema.define(version: 20150622145020) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "house_no",    limit: 255
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20150612161416) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "store_logos", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.string   "description", limit: 255
+    t.string   "link",        limit: 255
+    t.string   "logo",        limit: 255
+    t.integer  "store_id",    limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "stores", force: :cascade do |t|

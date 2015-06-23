@@ -1,17 +1,10 @@
 class Admin::StoresController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_store, only: [:edit, :update]
   before_filter :load_store
-  layout "admin/application"  
-  def show
-    if @store.users.include? current_user
+  before_action :set_store, only: [:edit, :update]
+  before_action :check_store_owner_admin  
+  layout "admin/application"
 
-    else
-      if current_user.store
-        redirect_to root_path
-      else
-        redirect_to new_store_url subdomain: false
-      end      
-    end
+  def show    
   end
 end

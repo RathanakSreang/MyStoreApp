@@ -1,7 +1,8 @@
 Rails.application.routes.draw do  
   namespace :admin do  
-    get "", to: "stores#show"
-    resources :products    
+    # resources :products
+    resources :store_logos
+    get "", to: "stores#show"    
   end
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks",

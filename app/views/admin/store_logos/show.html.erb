@@ -1,0 +1,16 @@
+<%= render "shared/admin_page_header", title: "Store Logos" %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 well">
+    <%= link_to "<-Back", admin_store_logos_path %>
+    <center><h3><%= @store_logo.title %></h3></center>
+    Description:<pre><%= @store_logo.description %></pre>
+    Link: <%= @store_logo.link %>
+    <br><br>
+    <center><%= image_tag @store_logo.logo.url, class: "img-responsive" %></center>
+    <br>
+    <center>
+      <%= link_to "Edit", edit_admin_store_logo_path(@store_logo) %>  |
+      <%= button_to "Delete", admin_store_logo_path(@store_logo), method: :delete, data: {confirm: "Are you sure?"} %>
+    </center>
+  </div>
+</div>

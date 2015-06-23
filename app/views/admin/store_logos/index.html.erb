@@ -1,0 +1,14 @@
+<%= render "shared/admin_page_header", title: "Store Logos" %>
+<%= link_to "Add New Logo", new_admin_store_logo_path, class: "btn btn-primary" %>
+<table class="table">
+  <thead>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Link</th>
+    <th></th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <%= render @store_logos %>    
+  </tbody>
+</table>
