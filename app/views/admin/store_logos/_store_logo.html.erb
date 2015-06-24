@@ -4,5 +4,5 @@
   <td><%= store_logo.link %></td>
   <td><%= link_to "Detail", admin_store_logo_path(store_logo) %></td>
   <td><%= link_to "Edit", edit_admin_store_logo_path(store_logo) %>
-      | <%= button_to "Delete", "#" %></td>
+      | <%= button_to "Delete", admin_store_logo_path(store_logo), method: :delete, data: {confirm: "Are you sure?"} %></td>
 </tr>

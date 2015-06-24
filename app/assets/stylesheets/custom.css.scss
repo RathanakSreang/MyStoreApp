@@ -8,6 +8,7 @@ body {
 @media(min-width:768px) {
     #wrapper {
         padding-left: 225px;
+        height: 100%;
     }
 
     #page-wrapper {
@@ -24,7 +25,9 @@ body {
 }
 
 @media(max-width:768px) {
-    
+  body {
+        margin-top: 70px;
+    }   
 }
 
 ul {
@@ -171,11 +174,6 @@ li {
     color: #fff;
 }
 
-.active {
-  color: #fff;
-  background-color: #080808;
-}
-
 form.button_to {
   display: inline;
   margin: 0;
@@ -193,4 +191,24 @@ form.button_to {
     text-decoration: none;
     color: #428bca;
   }
+}
+
+.side-bar {
+  .active>a, .active>a:hover, .active>a:focus,{
+    color: #fff;
+    background-color: #080808;  
+  }
+  
+}
+
+.control-carousel {
+  position: absolute;
+  top: 30%;
+  font-size: 60px; 
+}
+.right {
+  right: -15px;
+}
+.left {
+  left: -15px;
 }

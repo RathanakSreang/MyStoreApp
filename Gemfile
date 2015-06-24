@@ -12,9 +12,9 @@ gem "omniauth-google-oauth2"
 gem "font-awesome-rails"
 gem "client_side_validations", github: "DavyJonesLocker/client_side_validations", branch: "4-2-stable"
 
-gem "will_paginate", "3.0.7"
-gem "bootstrap-sass", "3.2.0.0"
-gem "bootstrap-will_paginate", "0.0.10"
+gem "will_paginate"
+gem "bootstrap-sass"
+gem "bootstrap-will_paginate"
 
 gem "rails", "4.2.1"
 gem "mysql2"
