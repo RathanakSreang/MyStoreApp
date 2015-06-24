@@ -44,8 +44,8 @@ class Admin::StoreLogosController < ApplicationController
 
   private
   def store_logo_params
-    params.require(:store_logo).permit :id, :title, :description, :link, :logo,
-                                      :logo_cache
+    params.require(:store_logo).permit :id, :title, :description, :visible, :link,
+                                      :logo, :logo_cache
   end
 
   def load_store_logo
