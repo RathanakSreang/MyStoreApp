@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>        
       </button>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#admin-user-menu">
-        <span class="glyphicon glyphicon-user"></span>
+        <i class="fa fa-user"></i>
       </button>
       <%= link_to "My Tob", root_url(subdomain: false), class: "navbar-brand" %>
     </div>
@@ -66,9 +66,10 @@
           </li>        
         <% end %>      
       </ul>
-    </div>  
+    </div>
+
+    <div class="collapse navbar-collapse sidebar-collapse side-bar">
+      <%= render "layouts/admin/side_bar" %>
+    </div>
   </div>
 </nav>
-<div class="collapse navbar-collapse sidebar-collapse">
-  <%= render "layouts/admin/side_bar" %>
-</div>
