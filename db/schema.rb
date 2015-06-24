@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622145020) do
+ActiveRecord::Schema.define(version: 20150624153342) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "house_no",    limit: 255
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150622145020) do
     t.integer  "store_id",    limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.boolean  "visible",     limit: 1
   end
 
   create_table "stores", force: :cascade do |t|
