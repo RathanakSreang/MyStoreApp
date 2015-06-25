@@ -53,6 +53,6 @@ class StoresController < ApplicationController
   def store_params
     params.require(:store).permit :id, :name, address_attributes: [:id,
       :phone, :house_no, :street_no, :village, :commune, :district, :province_id],
-      sub_domains_attributes: [:id, :name], user_stores_attributes: [:user_id]
+      sub_domains_attributes: [:id, :name], user_stores_attributes: [:id, :user_id]
   end
 end

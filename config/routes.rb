@@ -1,7 +1,11 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do 
+  mount Ckeditor::Engine => '/ckeditor'
   namespace :admin do  
     # resources :products
     resources :store_logos
+    resources :stores, only: [:update, :destory]
+    get "stores_setting", to: "stores#show"
+    get "edit_stores_setting", to: "stores#edit"
     get "", to: "stores#show"    
   end
 
@@ -16,7 +20,7 @@ Rails.application.routes.draw do
     get "sign_up", to: "devise/registrations#new"
   end
   resources :users
-  resources :stores  
+  resources :stores
   get "help"=>"static_pages#help", as: :help
   get "about"=>"static_pages#about", as: :about
   get "contact"=>"static_pages#contact", as: :contact

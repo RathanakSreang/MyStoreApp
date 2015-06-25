@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624153342) do
+ActiveRecord::Schema.define(version: 20150625234703) do
+
+  create_table "abouts", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.string   "fb_link",    limit: 255
+    t.string   "tw_link",    limit: 255
+    t.string   "in_link",    limit: 255
+    t.string   "gg_link",    limit: 255
+    t.integer  "store_id",   limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.string   "house_no",    limit: 255
@@ -24,6 +35,22 @@ ActiveRecord::Schema.define(version: 20150624153342) do
     t.datetime "updated_at",              null: false
     t.string   "phone",       limit: 255
   end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",    limit: 255, null: false
+    t.string   "data_content_type", limit: 255
+    t.integer  "data_file_size",    limit: 4
+    t.integer  "assetable_id",      limit: 4
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width",             limit: 4
+    t.integer  "height",            limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "name",       limit: 255
