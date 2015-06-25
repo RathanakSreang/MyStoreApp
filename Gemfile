@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 #gem "rmagick", "~> 2.15.2"
 #gem "jquery-fileupload-rails"
+gem "ckeditor"
 gem "mini_magick"
 #gem "fog"
 gem "carrierwave"

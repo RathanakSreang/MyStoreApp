@@ -1,0 +1,51 @@
+<%= form_for [:admin, @store], validate: true do |f| %>
+
+  <%= render "shared/error_message", object: f.object %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-group">
+        <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "*Store Name", required: true %>
+      </div>
+      <%= f.fields_for :user_stores do |builder| %>
+        <%= builder.hidden_field :user_id %>        
+      <% end %>
+      <%= f.fields_for :sub_domains do |builder| %>
+        <div class="form-group">
+          <%= builder.text_field :name, class: "form-control", placeholder: "Sub Domain" %>
+        </div>
+      <% end %>
+
+      <%= render "addresses/form", f: f %>
+    </div>  
+    <div class="col-md-10 col-md-offset-1">
+       About:
+       <%= f.fields_for :about do |builder| %>
+        <div class="form-group">
+          <%= builder.label "Facebook" %>
+          <%= builder.text_field :fb_link, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= builder.label "Twitter" %>
+          <%= builder.text_field :tw_link, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= builder.label "Google" %>
+          <%= builder.text_field :gg_link, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= builder.label "LinkedIn" %>
+          <%= builder.text_field :in_link, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= builder.label "About" %>
+          <%= builder.cktext_area :content, rows:15, class: "form-control" %>
+        </div>
+       <% end %>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.submit "Update", class: "btn btn-primary" %>
+      </div>
+    </div>    
+  </div>  
+<% end %>

@@ -1,16 +1,17 @@
 <ul class="nav navbar-nav side-nav">
-  <li class="<%= "active" if controller?("admin/stores") %>">
+  <li class="<%= "active" if controller?("admin/stores") && action?("show") %>">
       <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
   </li>    
   <li >
-      <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
-      <ul id="demo" class="<%= "collapse" if !controller?("admin/store_logos") %>">
-          <li class="<%= "active" if controller?("admin/store_logos") %>">
-            <%= link_to "Logos", admin_store_logos_path %>
-          </li>
-          <li>
-              <a href="#">Dropdown Item</a>
-          </li>
+      <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Store <i class="fa fa-fw fa-caret-down"></i></a>
+      <ul id="demo" class="<%= "collapse" unless controller?("admin/store_logos") ||controller?("admin/stores") %>">
+
+        <li class="<%= "active" if controller?("admin/store_logos") %>">
+          <%= link_to "Logos", admin_store_logos_path %>
+        </li>
+        <li class="<%= "active" if controller?("admin/stores") %>">
+          <%= link_to "Store", admin_stores_setting_path %>
+        </li>        
       </ul>
   </li>    
 </ul>

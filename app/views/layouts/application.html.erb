@@ -16,7 +16,7 @@
   </div>
 
   <% unless controller?("admin/stores") && action?("show") %>
-    <% if @store %>
+    <% if @store && (controller?("stores") && !action?("new")) %>
       <%= render "layouts/footer_blog" %>
     <% else %>
       <%= render "layouts/footer" %>

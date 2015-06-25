@@ -1,1 +1,29 @@
 <%= link_to "Go to my Tob", root_url(subdomain: @store.sub_domains.first.name) %>
+<div class="row well">
+  <div class="col-md-10 ">
+    <center><h3><%= @store.name %></h3></center>
+    <br/>
+    
+    <br/>
+
+    <% @store.sub_domains.each do |domain| %>
+      Domain url: http://www.<%= domain.name %>.mytob.com
+    <% end %>
+    <br/>
+    phone:<%= @store.address.phone %>
+    <br/>
+    Address:<%= @store.address.full_address %>
+
+    <br/>
+    About Me:
+    facebook:<%= @store.about.fb_link %>
+    twitter:<%= @store.about.tw_link %>
+    LinkedIn:<%= @store.about.in_link %>
+    Google:<%= @store.about.gg_link %>
+    <%= @store.about.content.html_safe %>
+  </div>
+  <div class="col-md-2">
+    <%= link_to "Edit", admin_edit_stores_setting_path, class: "btn btn-primary" %>
+    <%= link_to "Delete", "", class: "btn btn-danger" %>
+  </div>
+</div>

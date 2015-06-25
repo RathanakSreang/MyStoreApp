@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require rails.validations
+//= require ckeditor/init
 //= require_tree .
