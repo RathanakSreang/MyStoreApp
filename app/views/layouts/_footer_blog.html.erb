@@ -9,13 +9,9 @@
       <i class="fa fa-map-marker"></i>
       <p>
         <span>
-          <%= @store.address.house_no %>,
-          <%= @store.address.street_no %>,          
-          <%= @store.address.village %>,
-          <%= @store.address.commune %>
+          <%= @store.address.first_address %>,      
         </span>
-        <%= @store.address.district %>,
-        <%= @store.address.province.name %>
+        <%= @store.address.second_address %>        
       </p>      
     </div>
     <div>
@@ -23,20 +19,17 @@
       <p><%= @store.address.phone %></p>
     </div>
     <div>
-      <i class="fa fa-envelope"></i>
-      <p><%= link_to "here", "#" %></p>
+      <i class="fa fa-info-circle"></i>
+      <p><%= link_to "About Us", about_path %></p>
     </div>
   </div>
-  <div class="footer-right">
-    <p class="footer-company-about">
-      <span>About the company</span>
-      Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-    </p>
-    <div class="footer-icons">
-      <a href="#"><i class="fa fa-facebook"></i></a>
-      <a href="#"><i class="fa fa-twitter"></i></a>
-      <a href="#"><i class="fa fa-linkedin"></i></a>
-      <a href="#"><i class="fa fa-github"></i></a>
-    </div>
+
+  <div class="footer-right">    
+    <div class="footer-icons">      
+      <%= render "shared/social/facebook_icon", fb_link: @store.about.fb_link %>
+      <%= render "shared/social/google_plus_icon", gg_link: @store.about.gg_link %>
+      <%= render "shared/social/twitter_icon", tw_link: @store.about.tw_link %>
+      <%= render "shared/social/linkedin_icon", in_link: @store.about.in_link %>      
+    </div>    
   </div>
 </footer>

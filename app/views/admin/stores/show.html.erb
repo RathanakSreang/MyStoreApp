@@ -1,29 +1,36 @@
 <%= link_to "Go to my Tob", root_url(subdomain: @store.sub_domains.first.name) %>
 <div class="row well">
-  <div class="col-md-10 ">
+  <div class="col-md-12 ">
     <center><h3><%= @store.name %></h3></center>
-    <br/>
-    
-    <br/>
-
-    <% @store.sub_domains.each do |domain| %>
-      Domain url: http://www.<%= domain.name %>.mytob.com
-    <% end %>
-    <br/>
-    phone:<%= @store.address.phone %>
-    <br/>
-    Address:<%= @store.address.full_address %>
-
-    <br/>
-    About Me:
-    facebook:<%= @store.about.fb_link %>
-    twitter:<%= @store.about.tw_link %>
-    LinkedIn:<%= @store.about.in_link %>
-    Google:<%= @store.about.gg_link %>
-    <%= @store.about.content.html_safe %>
-  </div>
-  <div class="col-md-2">
-    <%= link_to "Edit", admin_edit_stores_setting_path, class: "btn btn-primary" %>
-    <%= link_to "Delete", "", class: "btn btn-danger" %>
-  </div>
+    <br/>    
+    <ul class="well socail">      
+      <li><i class="fa fa-map-marker fa-2x"></i>
+            <%= @store.address.first_address %>, <%= @store.address.second_address %>          
+      </li>
+      <% @store.sub_domains.each do |domain| %>
+        <li>
+          <%= link_to root_url(subdomain: @store.sub_domains.first.name) do %>
+            <i class="fa fa-globe fa-2x"></i> http://www.<%= domain.name %>.mytob.com
+          <% end %>
+        </li>
+      <% end %>
+      <li><i class="fa fa-phone-square fa-2x"></i><%= @store.address.phone %></li>
+      <li>
+        <%= render "shared/social/facebook", fb_link: @store.about.fb_link, visible: true %>
+      </li>
+      <li>
+        <%= render "shared/social/twitter", tw_link: @store.about.tw_link, visible: true %>
+      </li>
+      <li>
+        <%= render "shared/social/linkedin", in_link: @store.about.in_link, visible: true %>
+      </li>
+      <li>
+        <%= render "shared/social/google_plus", gg_link: @store.about.gg_link, visible: true %>
+      </li>
+      <br/>
+      <%= link_to "Edit", admin_edit_stores_setting_path, class: "btn btn-primary" %>
+      <%= link_to "Delete", "", class: "btn btn-danger" %>       
+    </ul>
+    <%= sanitize @store.about.content %>
+  </div>    
 </div>

@@ -17,30 +17,47 @@
 
       <%= render "addresses/form", f: f %>
     </div>  
-    <div class="col-md-10 col-md-offset-1">
-       About:
-       <%= f.fields_for :about do |builder| %>
-        <div class="form-group">
-          <%= builder.label "Facebook" %>
-          <%= builder.text_field :fb_link, class: "form-control" %>
+    <div class="col-md-12">       
+      <%= f.fields_for :about do |builder| %>
+      <div class="row">            
+       <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon"><i class="fa fa-facebook"></i></div>
+              <%= builder.text_field :fb_link, class: "form-control", placeholder: "Facebook url" %>            
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon"><i class="fa fa-twitter"></i></div>
+              <%= builder.text_field :tw_link, class: "form-control", placeholder: "Twitter url" %>            
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon"><i class="fa fa-google-plus"></i></div>
+              <%= builder.text_field :gg_link, class: "form-control", placeholder: "Google+ url" %>            
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon"><i class="fa fa-linkedin"></i></div>
+              <%= builder.text_field :in_link, class: "form-control", placeholder: "LinkedIn url" %>            
+            </div>
+          </div> 
         </div>
-        <div class="form-group">
-          <%= builder.label "Twitter" %>
-          <%= builder.text_field :tw_link, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= builder.label "Google" %>
-          <%= builder.text_field :gg_link, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= builder.label "LinkedIn" %>
-          <%= builder.text_field :in_link, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= builder.label "About" %>
-          <%= builder.cktext_area :content, rows:15, class: "form-control" %>
-        </div>
-       <% end %>
+          
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= builder.label "About" %>
+            <%= builder.cktext_area :content, rows:15, class: "form-control" %>
+          </div>
+        </div>        
+      </div>
+      <% end %>
     </div>
     <div class="col-md-12">
       <div class="form-group">

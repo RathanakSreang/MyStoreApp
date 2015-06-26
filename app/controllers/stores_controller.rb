@@ -28,6 +28,7 @@ class StoresController < ApplicationController
   def create
     @store = Store.new store_params
     if @store.save
+      @store.create_about content: "This is about page."
       redirect_to admin_url subdomain: @store.sub_domains.first.name#@store
     else
       render "new"
