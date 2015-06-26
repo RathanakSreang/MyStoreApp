@@ -9,9 +9,12 @@ class ApplicationController < ActionController::Base
   def load_store
     if request.subdomain.present? && request.subdomain != "www"
       sub_domain = SubDomain.find_by_name request.subdomain
-      @store = sub_domain.store
-    else
-      redirect_to root_path
+      if sub_domain
+        @store = sub_domain.store
+      else
+        #find cos user type wrong url
+        redirect_to root_url subdomain: false
+      end
     end
   end
 

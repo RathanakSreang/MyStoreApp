@@ -14,13 +14,11 @@
     <%= render "layouts/flash_message" %>
     <%= yield %>
   </div>
-
-  <% unless controller?("admin/stores") && action?("show") %>
-    <% if @store && (controller?("stores") && !action?("new")) %>
-      <%= render "layouts/footer_blog" %>
-    <% else %>
-      <%= render "layouts/footer" %>
-    <% end %>
-  <% end %>
+  
+  <% if @store.nil? || (controller?("stores") && action?("new")) %>
+    <%= render "layouts/footer" %>
+  <% else %>
+    <%= render "layouts/footer_blog" %>    
+  <% end %>  
 </body>
 </html>

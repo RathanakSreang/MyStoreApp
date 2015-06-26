@@ -5,7 +5,15 @@ class Address < ActiveRecord::Base
 
   validates :phone, :village, :commune, :district,
             presence: true
-  def full_address
-    [house_no, street_no, village, commune, district, province.name].join(",")
+  def first_address    
+    (house_no.present? ? "No.#{house_no}, " : "") +
+    (street_no.present? ? "st #{street_no}, "  : "") +
+    (village.present? ? "#{village}, " : "") +
+    (commune.present? ? "#{commune}" : "")
+  end
+
+  def second_address
+    (district.present? ? "#{district}, " : "") +
+    (province.name.present? ? "#{province.name}" : "")
   end
 end
