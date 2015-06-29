@@ -1,17 +1,43 @@
 <ul class="nav navbar-nav side-nav">
   <li class="<%= "active" if controller?("admin/stores") && action?("show") %>">
-      <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-  </li>    
+      <a href=""><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+  </li>
   <li >
-      <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Store <i class="fa fa-fw fa-caret-down"></i></a>
-      <ul id="demo" class="<%= "collapse" unless controller?("admin/store_logos") ||controller?("admin/stores") %>">
+      <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-home"></i> Store <i class="fa fa-fw fa-caret-down"></i></a>
+      <ul id="demo" class="<%= "collapse" unless controller?("admin/store_logos") || controller?("admin/stores") || controller?("admin/addresses") || controller?("admin/abouts") %>">
 
         <li class="<%= "active" if controller?("admin/store_logos") %>">
           <%= link_to "Logos", admin_store_logos_path %>
         </li>
         <li class="<%= "active" if controller?("admin/stores") %>">
           <%= link_to "Store", admin_stores_setting_path %>
-        </li>        
+        </li>
+        <li class="<%= "active" if controller?("admin/abouts") %>">
+          <%= link_to "About", admin_stores_abouts_path %>
+        </li>
+        <li class="<%= "active" if controller?("admin/addresses") %>">
+          <%= link_to "Address", admin_stores_addresses_path %>
+        </li>
       </ul>
-  </li>    
+  </li>
+  <li class="">
+    <%= link_to "" do %>
+      <i class="fa fa-fw fa-user"></i>User
+    <% end %>
+  </li>
+  <li class="">
+    <%= link_to "" do %>
+      <i class="fa fa-gift"></i>Product
+    <% end %>
+  </li>
+  <li class="">
+    <%= link_to "" do %>
+      <i class="fa fa-file-excel-o"></i>Report
+    <% end %>
+  </li>
+  <li class="">
+    <%= link_to "" do %>
+      <i class="fa fa-fw fa-user"></i>Activity
+    <% end %>
+  </li>
 </ul>

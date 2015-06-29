@@ -12,4 +12,6 @@
   </div>
 <% end %>
 
-<%= render "addresses/form", f: f %>
+<%= f.fields_for :address do |builder| %>
+  <%= render "addresses/form", f: builder %>
+<% end %>

@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-4 well well-sm">
-    <legend><a href="#"><i class="glyphicon glyphicon-globe"></i></a> Sign up here with!</legend>
+    <legend><a href="#"><i class="fa fa-globe"></i></a> Sign up here with!</legend>
     <div class="social-buttons">
       <center>
-        <%= link_to raw('<i class="fa fa-facebook"></i> Facebook'), user_omniauth_authorize_path(:facebook), class: "btn btn-facebook" %>
-        <%= link_to raw('<i class="fa fa-twitter"></i> Twitter'), user_omniauth_authorize_path(:twitter), class: "btn btn-twitter" %>
-        <%= link_to raw('<i class="fa fa-google "></i> Google'), user_omniauth_authorize_path(:google_oauth2), class: "btn btn-google" %>
+        <%= link_to raw('<i class="fa fa-facebook"></i> Facebook'), user_omniauth_authorize_url(:facebook, subdomain: false), class: "btn btn-facebook author_popup" %>
+        <%= link_to raw('<i class="fa fa-twitter"></i> Twitter'), user_omniauth_authorize_path(:twitter), class: "btn btn-twitter author_popup" %>
+        <%= link_to raw('<i class="fa fa-google "></i> Google'), user_omniauth_authorize_url(:google_oauth2, subdomain: false), class: "btn btn-google author_popup" %>
       </center>
     </div>    
     <center class="or">OR</center>    
@@ -49,7 +49,9 @@
           <% end%>
       </div>
 
-      <%= render "addresses/form", f: f %>
+      <%= f.fields_for :address do |builder| %>
+        <%= render "addresses/form", f: builder %>
+      <% end %>
       
       <div class="form-group">
         <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>

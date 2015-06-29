@@ -26,7 +26,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
-  process convert: "jpg"
+  process convert: "png"
   process resize_to_fill: [200, 200, "Center"]
 
   version :small do
@@ -39,6 +39,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "user_profile.jpg" if original_filename
+    "user_profile.png" if original_filename
   end
 end

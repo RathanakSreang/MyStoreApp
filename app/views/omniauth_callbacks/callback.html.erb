@@ -1,0 +1,9 @@
+<script type="text/javascript">
+  if(window.opener) {
+    // window.opener.location.reload(true);
+    window.onunload=function(){
+      window.opener.location.href = window.name;//window.name = url of opener
+    };
+    window.close()
+  }
+</script>

@@ -11,4 +11,6 @@ class Store < ActiveRecord::Base
   accepts_nested_attributes_for  :user_stores, allow_destroy: true
 
   validates :name, presence: true
+
+  mount_uploader :icon, StoreIconUploader
 end
