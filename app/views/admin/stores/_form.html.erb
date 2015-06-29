@@ -3,6 +3,16 @@
   <%= render "shared/error_message", object: f.object %>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <%= image_tag f.object.icon, class:"img-rounded img-responsive", id: "uploadPreview"  %>
+        </div>
+      </div>      
+      <div class="form-group">          
+        <%= f.file_field :icon, class: "form-control", id: "uploadImage", onchange:"PreviewImage();"%>
+        <%= f.hidden_field :icon_cache %>
+      </div>
+
       <div class="form-group">
         <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "*Store Name", required: true %>
       </div>
@@ -13,51 +23,8 @@
         <div class="form-group">
           <%= builder.text_field :name, class: "form-control", placeholder: "Sub Domain" %>
         </div>
-      <% end %>
-
-      <%= render "addresses/form", f: f %>
-    </div>  
-    <div class="col-md-12">       
-      <%= f.fields_for :about do |builder| %>
-      <div class="row">            
-       <div class="col-md-6 col-md-offset-3">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-facebook"></i></div>
-              <%= builder.text_field :fb_link, class: "form-control", placeholder: "Facebook url" %>            
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-twitter"></i></div>
-              <%= builder.text_field :tw_link, class: "form-control", placeholder: "Twitter url" %>            
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-google-plus"></i></div>
-              <%= builder.text_field :gg_link, class: "form-control", placeholder: "Google+ url" %>            
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-linkedin"></i></div>
-              <%= builder.text_field :in_link, class: "form-control", placeholder: "LinkedIn url" %>            
-            </div>
-          </div> 
-        </div>
-          
-        <div class="col-md-12">
-          <div class="form-group">
-            <%= builder.label "About" %>
-            <%= builder.cktext_area :content, rows:15, class: "form-control" %>
-          </div>
-        </div>        
-      </div>
-      <% end %>
+      <% end %>    
+    </div>    
     </div>
     <div class="col-md-12">
       <div class="form-group">

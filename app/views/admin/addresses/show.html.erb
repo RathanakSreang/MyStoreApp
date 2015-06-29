@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 well">
+    <legend>Store Address</legend>
+    <ul>
+      <li><i class="fa fa-map-marker fa-2x"></i><%= @address.first_address %>, <%= @address.second_address %></li>
+      <li><i class="fa fa-phone-square fa-2x"></i><%= @address.phone %></li>
+      <li>House No:<%= @address.house_no %></li>
+      <li>Street:<%= @address.street_no %></li>
+      <li>Village:<%= @address.village %></li>
+      <li>Commune:<%= @address.commune %></li>
+      <li>District:<%= @address.district %></li>
+      <li>Province:<%= @address.province.name %></li>
+    </ul>
+    <%= link_to "Edit", admin_edit_stores_addresses_path, class: "btn btn-primary" %>
+  </div>
+</div>

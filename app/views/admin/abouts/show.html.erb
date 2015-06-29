@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 well socail">
+    <legend>About Store</legend>
+    <%= render "shared/social/facebook", fb_link: @store.about.fb_link, visible: true %>    
+    <%= render "shared/social/twitter", tw_link: @store.about.tw_link, visible: true %>
+    <%= render "shared/social/linkedin", in_link: @store.about.in_link, visible: true %>    
+    <%= render "shared/social/google_plus", gg_link: @store.about.gg_link, visible: true %>        
+    <%= link_to "Edit", admin_edit_stores_abouts_path, class: "btn btn-primary" %>    
+    <%= sanitize @store.about.content %>
+  </div>
+</div>

@@ -29,8 +29,10 @@ class StoresController < ApplicationController
     @store = Store.new store_params
     if @store.save
       @store.create_about content: "This is about page."
+      flash[:success] = "Successful create store"
       redirect_to admin_url subdomain: @store.sub_domains.first.name#@store
     else
+      flash[:danger] = "Fail create store"
       render "new"
     end
   end

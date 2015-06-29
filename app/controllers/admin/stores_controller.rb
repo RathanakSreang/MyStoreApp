@@ -28,9 +28,8 @@ class Admin::StoresController < ApplicationController
 
   private
   def store_params
-    params.require(:store).permit :id, :name, address_attributes: [:id,
-     :phone, :house_no, :street_no, :village, :commune, :district, :province_id],
-     sub_domains_attributes: [:id, :name], user_stores_attributes: [:id, :user_id],
-     about_attributes: [:id, :content, :fb_link, :tw_link, :in_link, :gg_link]
+    params.require(:store).permit :id, :name, :icon, :icon_cache,
+                                  sub_domains_attributes: [:id, :name],
+                                  user_stores_attributes: [:id, :user_id]
   end
 end

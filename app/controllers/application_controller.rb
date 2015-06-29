@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_store_owner_admin
-    unless @store.users.include? current_user  
+    unless @store && @store.users.include?(current_user)
       if current_user.store
         redirect_to root_path
       else

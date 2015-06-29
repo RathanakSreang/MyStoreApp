@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   namespace :admin do  
     # resources :products
     resources :store_logos
+    resources :abouts, only: [:update]
+    get "stores_abouts", to: "abouts#show"
+    get "edit_stores_abouts", to: "abouts#edit"
+    resources :addresses, only: [:update]
+    get "stores_addresses", to: "addresses#show"
+    get "edit_stores_addresses", to: "addresses#edit"
     resources :stores, only: [:update, :destory]
     get "stores_setting", to: "stores#show"
     get "edit_stores_setting", to: "stores#edit"
