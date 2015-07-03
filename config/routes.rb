@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     get "", to: "stores#show"    
   end
 
+  namespace :official do
+    resources :categories
+    resources :product_types
+    get "", to: "product_types#index"
+  end
+
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks",
                                   passwords: "passwords",
                                   sessions: "sessions",

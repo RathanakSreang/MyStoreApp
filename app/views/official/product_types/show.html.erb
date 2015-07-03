@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 well">
+    <legend>Product Type</legend>
+    <%= @product_type.name %>
+    <ul>
+      <% @product_type.fields.each do |field| %>
+        <li>Field_type:<%= field.field_type %>, Name:<%= field.name %>, required:<%= field.required %></li>
+      <% end %>
+    </ul>
+
+    <%= link_to "Edit", edit_official_product_type_path(@product_type), class: "btn btn-primary" %>    
+    <%= link_to "Delete", official_product_type_path(@product_type), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<%= form_for [:official, @product_type] do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <%= f.fields_for :fields do |builder| %>
+    <%= render "field_fields", f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add field", f, :fields %>
+  <div class="action">
+    <%= f.submit action, class: "btn btn-primary" %>
+  </div>
+<% end %>

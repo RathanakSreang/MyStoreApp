@@ -1,0 +1,22 @@
+<ul class="nav navbar-nav side-nav">
+  <li class="<%= "active" if controller?("official/stores") && action?("show") %>">
+      <a href=""><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+  </li>
+  <li >
+      <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-home"></i> Product <i class="fa fa-fw fa-caret-down"></i></a>
+      <ul id="demo" class="<%= "collapse" unless controller?("official/product_types") || controller?("official/categories") %>">
+
+        <li class="<%= "active" if controller?("official/product_types") %>">
+          <%= link_to "Product Type", official_product_types_path %>
+        </li>
+        <li class="<%= "active" if controller?("official/categories") %>">
+          <%= link_to "Categories", official_categories_path %>
+        </li>        
+      </ul>
+  </li>
+  <li class="">
+    <%= link_to "" do %>
+      <i class="fa fa-fw fa-user"></i>Product Type
+    <% end %>
+  </li>
+</ul>
