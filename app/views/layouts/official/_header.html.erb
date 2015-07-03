@@ -1,0 +1,75 @@
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".sidebar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>        
+      </button>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#admin-user-menu">
+        <i class="fa fa-user"></i>
+      </button>
+      <%= link_to "My Tob", root_url(subdomain: false), class: "navbar-brand" %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="admin-user-menu">
+      <ul class="nav navbar-nav navbar-right top-nav">
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <%= link_to "#", class:"dropdown-toggle", id:"admin-user-header", 
+                      'aria-expanded' =>'false', data: {toggle: "dropdown"} do %>    
+              <table>
+                <tr>
+                  <td>          
+                    <%= image_tag current_user.avatar.url(:small).to_s, class:"img-circle  small_user_profile" %>          
+                  </td>
+                  <td>
+                    <span class="hidden-xs user-name"><b><%= current_user.name.capitalize %></b></span>
+                  </td>
+                </tr>
+              </table>
+            <% end %>
+            <ul id="login-dp" class="dropdown-menu">    
+              <li>
+                <%= link_to current_user do%>
+                  <i class="fa fa-user"> </i>  Profile
+                <%end%>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <% if current_user.store %>
+                  <%= link_to admin_url(subdomain: current_user.store.sub_domains.first.name) do %>
+                    <i class="fa fa-cog"></i>  My Tob
+                  <% end %>
+                <% else %>
+                  <%= link_to  new_store_path do %>
+                    <i class="fa fa-cog"></i>  Create Tob
+                  <% end %>
+                <% end %>
+              </li>
+              <li class="divider"></li>
+              <li>    
+              <%= link_to edit_user_registration_path do%>
+                <i class="fa fa-cog"></i>  Sitting
+              <%end%>
+              </li>
+              <li class="divider"></li>
+              <li><%= link_to sign_out_path do%>
+                <center><i class="fa fa-sign-out fa-lg"></i>  Sign Out</center>      
+              <%end%>    
+              </li>
+              <br/>
+            </ul>
+          </li>        
+        <% end %>      
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse sidebar-collapse side-bar">
+      <%= render "layouts/official/side_bar" %>
+    </div>
+  </div>
+</nav>

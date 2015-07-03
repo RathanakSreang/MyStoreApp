@@ -1,0 +1,7 @@
+<tr>
+  <td><%= product_type.name %></td>
+  <td><%= product_type.fields.size %></td>  
+  <td><%= link_to "Detail", official_product_type_path(product_type) %>
+    | <%= link_to "Edit", edit_official_product_type_path(product_type) %>
+      | <%= button_to "Delete", official_product_type_path(product_type), method: :delete, data: {confirm: "Are you sure?"} %></td>
+</tr>
